@@ -163,6 +163,7 @@ var app = {
         });
     },
     awardPoints: (num) => {
+        if (app.role == "host") $("#win")[0].play();
         var boardScore = app.board.find('#boardScore');
         var currentScore = {
             var: parseInt(boardScore.html())
@@ -203,6 +204,7 @@ var app = {
     flipCard: (n) => {
         console.log("card");
         console.log(n);
+        if (app.role == "host") $("#ding")[0].play();
         var card = $('[data-id="' + n + '"]');
         var flipped = $(card).data("flipped");
         var cardRotate = (flipped) ? 0 : -180;
@@ -217,6 +219,7 @@ var app = {
     wrongAnswer:()=>{
         app.wrong++
         console.log("wrong: "+ app.wrong )
+        if (app.role == "host") $("#buzzer")[0].play();
         var wrong = app.board.find(".wrongBoard")
         $(wrong).find("img:nth-child("+app.wrong+")").show()
         $(wrong).show()
