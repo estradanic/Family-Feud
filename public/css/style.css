@@ -1,4 +1,3 @@
-
 html {
   height: 100%;
   width: 100%;
@@ -75,10 +74,10 @@ body {
 .gameBoard #boardScore {
   grid-area: scoreM;
 }
-.gameBoard #team1 {
+.gameBoard .teamSection:has(#team1) {
   grid-area: scoreT1;
 }
-.gameBoard #team2 {
+.gameBoard .teamSection:has(#team2) {
   grid-area: scoreT2;
 }
 .gameBoard #middleBoard{
@@ -202,7 +201,7 @@ body {
   margin:10px;
   height:50px;
   line-height:50px;
-  width:175px;
+  padding: 0 1rem;
   border:3px solid white;
   -webkit-box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
   -moz-box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
@@ -258,5 +257,83 @@ body {
   display: inline-block;
 }
 .showHost #wrong {
-width: 75px;
+  width: 75px;
+}
+.questionHolder {
+  cursor: pointer;
+}
+
+/* Team name styling */
+.teamSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    position: relative;
+}
+
+.teamNameContainer {
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: 30px; /* Fixed height to prevent layout shifts */
+}
+
+.teamName {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 2px #000;
+    padding: 5px;
+    background-color: #002288;
+    border-radius: 4px;
+    border: 2px solid white;
+    max-width: 125px;
+}
+
+.teamNameInput {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 2px solid #0066cc;
+    border-radius: 4px;
+    background-color: #002288;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+/* Hide by default, will be shown when user becomes host */
+.hide {
+    display: none;
+}
+
+/* Hide team names when host is active and input fields are shown */
+.showHost .teamNameInput:not(.hide) + .teamName,
+.showHost .teamNameContainer:has(.teamNameInput:not(.hide)) .teamName {
+    display: none; /* More forceful than visibility:hidden */
+}
+
+.scoreEdit {
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #ffcc00;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: center;
+  width: 80%;
+  padding: 5px;
+}
+
+#prevQuestion, #resetScores {
+  background-color: #555;
+}
+
+#resetScores {
+  color: red;
 }
